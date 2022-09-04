@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <!--meta details and the base styles-->
+    <div th:replace="base/header-config :: meta-info"></div>
+
+</head>
+<body>
+
+<!-- Main wrapper  -->
+<div id="main-wrapper">
+
+    <!-- header header  -->
+    <div class="header">
+        <div th:replace="base/nav-bar :: header"/>
+    </div>
+
+    <div class="content">
+
+        <div class="d-flex justify-content-center">
+            <div class="card col-md-6">
+                <div class="card-header bg-dark text-white text-center">
+                    DELIVERY MANAGEMENT
+                </div>
+                <div class="card-body ">
+                    <form id="deliveryForm">
+                        <div class="form-group">
+                            <label for="deliveryID">Delivery ID</label>
+                            <input class="form-control" id="deliveryID" placeholder="Delivery ID"
+                                   type="text" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="destination">Destination</label>
+                            <input class="form-control" id="destination" placeholder="Destination" name="destination"
+                                   type="text" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="driverName">Driver's Name</label>
+                            <input class="form-control" id="driverName" placeholder="Driver Name" name="driverName"
+                                   type="text" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="driverDate">Delivery Date</label>
+                            <input class="form-control" id="driverDate" placeholder="Delivery Date" name="driverDate"
+                                   type="date" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="deliveryStatus">Status</label>
+                            <select class="custom-select" id="deliveryStatus" name="deliveryStatus" required>
+                                <option selected value="COMPLETED">COMPLETED</option>
+                                <option value="INCOMPLETE">INCOMPLETE</option>
+                            </select>
+                        </div>
+
+                        <button class="btn " id="delivery_add_btn" type="button" onclick="deliveryAdd()" style="background-color: #A2E039">SUBMIT</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+<!--base script fragment-->
+<div th:replace="base/base-script-js :: base-script-js"></div>
+<script type="application/javascript" th:src="@{/dist/controller/deliveryController.js}"></script>
+
+
+</body>
+</html>

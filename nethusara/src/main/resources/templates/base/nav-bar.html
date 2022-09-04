@@ -1,0 +1,16 @@
+<div th:fragment="header">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Delivery Master</a>
+        <button aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+                data-target="#navbarNavAltMarkup" data-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link active" th:href="@{/dashboard}">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" th:href="@{/deliver-status}">Delivery</a>
+                <a class="nav-link" th:href="@{/order-details}">Orders</a>
+            </div>
+        </div>
+    </nav>
+</div>

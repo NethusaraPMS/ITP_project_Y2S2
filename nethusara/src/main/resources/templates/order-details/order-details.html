@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <!--meta details and the base styles-->
+    <div th:replace="base/header-config :: meta-info"></div>
+
+</head>
+<body>
+
+<!-- Main wrapper  -->
+<div id="main-wrapper">
+
+    <!-- header header  -->
+    <div class="header">
+        <div th:replace="base/nav-bar :: header"/>
+    </div>
+
+    <div class="content">
+
+        <div class="d-flex justify-content-center">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header bg-dark text-white text-center">
+                        ORDER DELIVERY DETAILS
+                        <button class="btn btn-primary btn-sm float-right" data-target="#exampleModal"
+                                data-toggle="modal"
+                                type="button">
+                            INSERT ORDER
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title m-t-20">ALL ORDERS</h4>
+
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover" id="ordersTable">
+                                <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Address</th>
+                                    <th>Province</th>
+                                    <th>City</th>
+                                    <!-- <th>Product ID</th>-->
+                                    <th>Postal Code</th>
+                                    <th>Mobile No</th>
+                                    <th>Payment Method</th>
+                                    <th>Action</th>
+                                </tr>
+<!--                                <span></span>-->
+                                </thead>
+
+
+
+
+                                <tbody id="orderDetailsTableBody">
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal"
+                 tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">ADD ORDER</h5>
+                            <a aria-label="Close" class="close" data-dismiss="modal" type="button">
+                                <span aria-hidden="true">&times;</span>
+                            </a>
+                        </div>
+                        <div class="modal-body">
+                            <form id="order_details_form">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <input class="form-control" id="firstname" placeholder="Receiver's Firstname"
+                                               type="text" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <input class="form-control" id="lastname" placeholder="Receiver's Lastname"
+                                               type="text" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" id="address" placeholder="Address"
+                                              rows="3" required></textarea>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <input class="form-control" id="province" placeholder="Province"
+                                               type="text" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <input class="form-control" id="city" placeholder="City"
+                                               type="text" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <input class="form-control" id="productID" placeholder="Product ID" value="0"
+                                           type="text" hidden>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                        <input class="form-control" id="postalCode" placeholder="Postal Code/Zip"
+                                               type="text" required>
+                                    </div>
+                                    <div class="form-group col-md-9">
+                                        <input class="form-control" id="phoneNo" placeholder="Phone Number"
+                                               type="text" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <select class="custom-select" id="payment_status" required>
+                                        <option selected value="PAY_ONLINE">Pay Online</option>
+                                        <option value="CASH_ON_DELIVERY">Cash On Delivery</option>
+                                    </select>
+                                </div>
+
+                                <button class="btn" type="button" onclick="orderDetailAdd()" style="background-color: #A2E039">SUBMIT</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div aria-hidden="true" aria-labelledby="edit_exampleModalLabel" class="modal fade" id="exampleEditModal"
+                 tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="edit_exampleModalLabel">EDIT ORDER</h5>
+                            <a aria-label="Close" class="close" data-dismiss="modal" type="button">
+                                <span aria-hidden="true">&times;</span>
+                            </a>
+                        </div>
+                        <div class="modal-body">
+                            <form id="edit_order_details_form">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <input class="form-control" id="edit_firstname" placeholder="Receiver's Firstname"
+                                               type="text" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <input class="form-control" id="edit_lastname" placeholder="Receiver's Lastname"
+                                               type="text" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" id="edit_address" placeholder="Address"
+                                              rows="3" required></textarea>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <input class="form-control" id="edit_province" placeholder="Province"
+                                               type="text" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <input class="form-control" id="edit_city" placeholder="City"
+                                               type="text" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <input class="form-control" id="edit_productID" placeholder="Product ID"
+                                           type="text" hidden>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                        <input class="form-control" id="edit_postalCode" placeholder="Postal Code/Zip"
+                                               type="text" required>
+                                    </div>
+                                    <div class="form-group col-md-9">
+                                        <input class="form-control" id="edit_phoneNo" placeholder="Phone Number"
+                                               type="text" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <select class="custom-select" id="edit_payment_status" required>
+                                        <option selected value="PAY_ONLINE">Pay Online</option>
+                                        <option value="CASH_ON_DELIVERY">Cash On Delivery</option>
+                                    </select>
+                                </div>
+                                <input type="text" id="edit_orderID" hidden>
+                                <button class="btn" id="updateBtnID" type="button" onclick="updateOrderByID()" style="background-color: #A2E039">UPDATE</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--base script fragment-->
+<div th:replace="base/base-script-js :: base-script-js"></div>
+<script th:src="@{/dist/controller/orderDetailsController.js}" type="application/javascript"></script>
+</body>
+</html>
